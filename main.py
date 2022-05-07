@@ -6,8 +6,8 @@ from scipy.special import erf
 omega_by_L = -0.34
 alpha = 0.17
 tau = 15
-T0 = 2
-T1 = 0.5
+T0 = 9.5  # keep it above 9.5 for oscillations
+T1 = 8.5  # keep it above 8.3 for oscillations
 Bmin = 1
 Bmax = 7
 N_D = alpha * omega_by_L * tau ** 2
@@ -27,15 +27,23 @@ def model(Y, t):
     B_t, A_t = Y(t)
     _, A_T0 = Y(t - T0)
     B_T1, _ = Y(t - T1)
-    dB = omega_by_L * (A_t - A_T0) - B_t / tau
-    dA = alpha * quenching((B_t - B_T1)) * (B_t - B_T1) - A_t / tau
+    dB = omega_by_L * (A_t - A_T0) - (B_t / tau)
+    dA = alpha * quenching((B_t - B_T1)) * (B_t - B_T1) - (A_t / tau)
     return [dB, dA]
 
 
-tt = np.linspace(0, 300, int(1e4))
+time_steps = 1e4
+cutoff = int(time_steps / 4)
+
+tt = np.linspace(0, 600, int(time_steps))
 yy = ddeint(model, tt, lambda t: np.array([(Bmax + Bmin) / 2, (Bmax + Bmin) / 2]))
-plt.plot(tt, yy[:, 0], label="B")
-plt.plot(tt, yy[:, 1], label="A")
-plt.text(150, 4, f"{N_D=} {T0+T1=} {tau=}")
-plt.legend()
+
+fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+ax1.plot(tt[cutoff:], yy[cutoff:, 0], "b")
+ax1.set_ylabel("B")
+ax1.set_xlabel("Time")
+ax2.plot(tt[cutoff:], yy[cutoff:, 1], "r")
+ax2.set_ylabel("A")
+ax2.set_xlabel("Time")
+fig.suptitle(f"{N_D=} {T0+T1=} {tau=}")
 plt.show()
