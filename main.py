@@ -27,8 +27,8 @@ def model(Y, t):
     B_t, A_t = Y(t)
     _, A_T0 = Y(t - T0)
     B_T1, _ = Y(t - T1)
-    dB = omega_by_L * (A_t - A_T0) - (B_t / tau)
-    dA = alpha * quenching((B_t - B_T1)) * (B_t - B_T1) - (A_t / tau)
+    dB = omega_by_L * A_T0 - (B_t / tau)
+    dA = alpha * quenching(B_T1) * B_T1 - (A_t / tau)
     return [dB, dA]
 
 
