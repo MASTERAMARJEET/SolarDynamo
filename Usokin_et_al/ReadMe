@@ -1,0 +1,112 @@
+J/A+A/562/L10     Solar activity reconstructed for 3 millennia (Usoskin+, 2014)
+================================================================================
+Evidence for distinct modes of solar activity.
+    Usoskin I.G., Hulot G., Gallet Y., Roth R., Licht A., Joos F.,
+    Kovaltsov G.A., Thebault E., Khokhlov A.
+   <Astron. Astrophys. 562, L10 (2014)>
+   =2014A&A...562L..10U
+================================================================================
+ADC_Keywords: Sun
+Keywords: Sun: activity - Sun: dynamo - sunspots
+
+Abstract:
+    The Sun shows a large variability in its magnetic activity, from Grand
+    minima to Grand maxima, but the nature of the variability is not fully
+    understood, mostly because of an insufficient length of the directly
+    observed solar activity records and of uncertainties related to
+    long-term reconstructions. Here we present a new adjustment-free
+    reconstruction of solar activity over three millennia and study its
+    different modes.
+
+    We present a new adjustment-free, physical reconstruction of solar
+    activity over the past three millennia, using the latest verified
+    carbon cycle, ^14^C production and archeomagnetic field models. This
+    great improvement allows us to study different modes of solar activity
+    at unprecedented level of details.
+
+    The distribution of solar activity is clearly bi-modal implying the
+    existence of distinct modes of activity. The main regular activity
+    mode corresponds to moderate activity varying in a relatively narrow
+    band between sunspot number 20 and 67. The existence of a separate
+    Grand minimum mode with reduced solar activity, which cannot be
+    explained by random fluctuations of the regular mode, is confirmed at
+    a high confidence level. The possible existence of a separate Grand
+    maximum mode is also suggested, but the statistics is too low for a
+    confident conclusion to be reached.
+
+    The Sun is shown to operate in distinct modes - a main general mode, a
+    Grand minimum mode corresponding to an inactive Sun, and a possible
+    Grand maximum mode corresponding to an unusually active Sun. These
+    results provide important constraints for both dynamo models of
+    Sun-like stars and investigations of possible solar influence on
+    Earth's climate.
+
+Description:
+    Indices of solar activity reconstructed from ^14^C using the method
+    used in the paper. Two indices are provided - the sunspot number and
+    the cosmic ray modulation potential, both with the 95% confidence
+    intervals. The data sets are provided with decadal resolution, thus
+    the individual solar cycles are not resolved.
+
+File Summary:
+--------------------------------------------------------------------------------
+ FileName   Lrecl  Records   Explanations
+--------------------------------------------------------------------------------
+ReadMe         80        .   This file
+sn.dat         21      310   Decadal sunspot number reconstruction
+phi.dat        17      310   Decadal heliospheric modulation parameter
+--------------------------------------------------------------------------------
+
+See also:
+        VI/138 :  Sunspots catalogues, 1853-1870 (Casas+, 2013)
+  J/A+A/531/A6 : Evolution of solar irradiance during Holocene (Vieira+, 2011)
+
+ J/A+A/390/707  : Hemispheric Sunspot Numbers 1975-2000 (Temmer+, 2002)
+ J/A+A/447/735  : Hemispheric Sunspot Numbers 1945-2004 (Temmer+, 2006)
+ J/A+AS/110/351 : Sun observations in 1992 (Sanchez+, 1995)
+ J/A+AS/106/327 : Observations of the Sun during 1993 at Santiago (Noel 1994)
+ J/A+AS/113/131 : Observations of the Sun during 1994 (Noel, 1995)
+ J/A+AS/132/195 : Astrolabe observations of the Sun in 1995-1997 (Noel 1998)
+ J/A+AS/102/11  : Astrolabe observations of the Sun in 1990-1992 (Noel 1993)
+ J/A+A/375/614  : Astrolabe observations of the Sun in 1990-2000 (Noel, 2001)
+ J/A+A/309/655  : Solar chromospheric activity (HeI 10830A) (Shcherbakov+, 1996)
+ J/A+A/313/949  : Solar chromospheric structures. II. (Bocchialini+, 1996)
+ J/A+A/375/591  : SUMER Spectral Atlas of Solar Disk Features (Curdt+, 2001)
+ J/A+A/422/337  : Solar EUV Post-Eruptive Arcades (Tripathi+, 2004)
+ J/A+A/423/1109 : Center-to-limb variation of quiet Sun (Allende+, 2004)
+ J/ApJ/709/1238 : Solar Coronal Mass Ejection (Yeates+, 2010)
+ J/A+A/539/A13  : Solar bipolar magnetic fields (Yamamoto, 2012)
+ J/A+A/552/A114 : Sun chromospheric CaII-HK emission (Shapiro+, 2013)
+ J/A+A/555/A123 : 3D-MHD model of a solar active region corona (Bourdin+, 2013)
+ J/A+AS/119/489 : Solar Type II Radio Bursts, 1990.09 - 1993.12 (Mann+ 1996)
+ J/A+AS/130/233 : WATCH Solar X-Ray Burst Catalogue (Crosby+ 1998)
+ J/ApJ/710/L58  : Coronal type II radio bursts in 2002 (Lobzin+, 2010)
+ J/ApJ/747/L41  : Solar flares probabilities (Bloomfield+, 2012)
+
+Byte-by-byte Description of file: sn.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units   Label    Explanations
+--------------------------------------------------------------------------------
+   1-  5  I5    yr      Year     [-1145/1945] Central year of the decadal
+                                 interval (-BC/AD)
+   7- 10  F4.1  --      SN       Decadal sunspot number (mean)
+  12- 16  F5.1  --    b_SN       Decadal sunspot number (lower c.i. 95% bound)
+  18- 21  F4.1  --    B_SN       Decadal sunspot number (upper c.i. 95% bound)
+--------------------------------------------------------------------------------
+
+Byte-by-byte Description of file: phi.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units   Label    Explanations
+--------------------------------------------------------------------------------
+   1-  5  I5    yr      Year     [-1145/1945] Central year of the decadal
+                                 interval (-BC/AD)
+   7-  9  I3    MV      phi      Decadal modulation potential (mean)
+  11- 13  I3    MV    b_phi      Decadal mod. potential (lower c.i. 95% bound)
+  15- 17  I3    MV    B_phi      Decadal mod. potential (upper c.i. 95% bound)
+--------------------------------------------------------------------------------
+
+Acknowledgements:
+    Ilya Usoskin, ilya.usoskin(at)oulu.fi
+
+================================================================================
+(End)     Ilya Usoskin [Univ.Oulu, Finland], Patricia Vannier [CDS]  07-Feb-2014
