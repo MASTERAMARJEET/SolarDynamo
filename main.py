@@ -49,9 +49,9 @@ cutoff = 0
 tt = np.linspace(0, time_range, int(time_range / time_steps + 1))
 
 
-for alpha in [0.1,1,10,100]:
+for alpha in [0.24]:
     fig, ax = plt.subplots(1, 1, sharex=True)
-    for percent, color in zip([0, 0.005, 0.05], ["b","g", "r", "k"]):
+    for percent, color in zip([0.00001, 0.00005, 0.0001], ["b","g", "r", "k"]):
         data_file = f"data/a{alpha}_p{percent}_{time_range}_{time_steps}.txt"
         if os.path.isfile(data_file):
             print("file found.. Nice!")
