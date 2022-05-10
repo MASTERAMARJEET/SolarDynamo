@@ -6,6 +6,7 @@ solver built on top of Scipy's odeint """
 import numpy as np
 from scipy.integrate import ode
 import scipy.interpolate
+from tqdm import tqdm
 
 
 class ddeVar:
@@ -55,9 +56,9 @@ class dde(ode):
     integration step.
     """
 
-    def __init__(self, f, jac=None):
+    def __init__(self, model, jac=None):
         def f2(t, y, args):
-            return f(self.Y, t, *args)
+            return model(self.Y, t, *args)
 
         ode.__init__(self, f2, jac)
         self.set_f_params(None)
@@ -74,7 +75,7 @@ class dde(ode):
         ode.set_initial_value(self, Y(Y.tc), Y.tc)
 
 
-def ddeint(func, tt, past, fargs=None):
+def ddeint(model, tt, past, modelargs=None):
     """ Solves Delay Differential Equations
 
     Similar to scipy.integrate.odeint. Solves a Delay differential
@@ -82,31 +83,31 @@ def ddeint(func, tt, past, fargs=None):
 
         Y(t) = past(t) for t<0
 
-        Y'(t) = func(Y,t) for t>= 0
+        Y'(t) = model(Y,t) for t>= 0
 
-    Where func can involve past values of Y, like Y(t-d).
+    Where model can involve past values of Y, like Y(t-d).
 
 
     Parameters
     -----------
 
-    func
+    model
       a function Y,t,args -> Y'(t), where args is optional.
       The variable Y is an instance of class ddeVar, which means that
       it is called like a function: Y(t), Y(t-d), etc. Y(t) returns
       either a number or a numpy array (for multivariate systems).
+
+    tt
+      The vector of times [t0, t1, ...] at which the system must
+      be solved.
 
     past
       The 'history function'. A function past(t)=Y(t) for t<0, past(t)
       returns either a number or a numpy array (for multivariate
       systems).
 
-    tt
-      The vector of times [t0, t1, ...] at which the system must
-      be solved.
-
-    fargs
-      Additional arguments to be passed to parameter ``func``, if any.
+    modelargs
+      Additional arguments to be passed to parameter ``model``, if any.
 
 
     Examples
@@ -135,12 +136,15 @@ def ddeint(func, tt, past, fargs=None):
     >>> past = lambda t : np.array([1+t,2-t]) # 'history' at t<0
     >>> tt = np.linspace(0,30,20000) # times for integration
     >>> d = 0.5 # set parameter d 
-    >>> yy = ddeint(model,past,tt,fargs=(d,)) # solve the DDE !
+    >>> yy = ddeint(model,tt,past,modelargs=(d,)) # solve the DDE !
 
     """
 
-    dde_ = dde(func)
+    dde_ = dde(model)
     dde_.set_initial_value(ddeVar(past, tt[0]))
-    dde_.set_f_params(fargs if fargs else [])
-    results = [dde_.integrate(dde_.t + dt) for dt in np.diff(tt)]
+    dde_.set_f_params(modelargs if modelargs else [])
+    results = []
+    for dt in tqdm(np.diff(tt)):
+        results.append(dde_.integrate(dde_.t + dt))
+    # results = [dde_.integrate(dde_.t + dt) for dt in np.diff(tt)]
     return np.array([past(tt[0])] + results)
